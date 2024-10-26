@@ -1,7 +1,12 @@
+"use client";
 import Image from "next/image";
 import styles from "./page.module.css";
+import {useState} from "react";
+import {Modal} from "@/app/modal/Modal";
 
 export default function Home() {
+  const [show, setShow] = useState(false);
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
@@ -45,7 +50,17 @@ export default function Home() {
             Read our docs
           </a>
         </div>
+
+        <div>
+          <button onClick={() => setShow((state) => !state)}>
+            Open modal
+          </button>
+
+          {show && <Modal onClose={() => setShow(false)} />}
+        </div>
       </main>
+
+
       <footer className={styles.footer}>
         <a
           href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
